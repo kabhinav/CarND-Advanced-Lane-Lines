@@ -72,7 +72,10 @@ In cells 13 and 14, I used the sliding search approach as described in lecture n
 
 ####5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I did this in 15th cell of the Ipython notebook.
+I did this in 15th cell of the Ipython notebook. I have added the position of vehichle with respect to center in current revision. Following is a sample output:
+
+> Estimated radius of curvature: 807.0
+> Car is 0.33m right of center
 
 ####6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
@@ -86,6 +89,8 @@ I implemented this step in 16th cell of the IPython botebook in the function `ma
 
 ####1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
+For correctly identifying lane marking in project_video.mp4 I use `Line` class defined in  21st cell of the IPython notebook to keep track of the lane marking from previous frame. This also means that I don't need to apply the sliding frame search for lane on every frame of video.
+
 Here's a [link to my video result](./result_video.mp4)
 
 ---
@@ -95,3 +100,5 @@ Here's a [link to my video result](./result_video.mp4)
 ####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
 I tried different methods of getting correct warped image from prespective transform unsuccessfully. Then I read more material about prespective transform including discussion about computing vanishing points in an image in order to compute src and dst points. After several unsuccessful attempts, I hardcoded the src, dst by visually looking at image and finding them manually.
+
+In my current city of living, Montreal Canada, there are several roads where the lane markings are so faded that it is hard for a human driver to correctly idenify the lanes. I think the current approach will fail on such roads where the lane markins are fairly sparse due to fading over time. I think in such cases we will need additional sensor information like from a radar so that the car is aware about its surroundings while it plots an imaginary lane for driving.
